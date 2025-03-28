@@ -57,7 +57,7 @@ const Dashboard = () => {
                 <button
                     onClick={handleLogout}
                     className={`${isSidebarOpen ? "block" : "text-center"
-                        } p-2 bg-red-600 text-gray-200 hover:bg-red-500 rounded-lg`}
+                        } p-2 bg-gray-100 text-gray-800 hover:bg-red-500 hover:text-gray-200 rounded-lg`}
                 >
                     {isSidebarOpen ? "Logout" : "L"}
                 </button>

@@ -8,6 +8,7 @@ const UsersPage = () => {
   const [totalUsers, setTotalUsers] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingUser, setEditingUser] = useState(null);
+  const [msg ,setMsg] = useState(null);
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -52,18 +53,31 @@ const UsersPage = () => {
         )
       );
       closeModal();
-      alert('Success! user updated');
+      setMsg('Success! user updated.');
+      setTimeout(() => {
+        setMsg(null);
+      }, 3000);
     } catch (error) {
-      alert("Error updating user", error);
+      setMsg('Error!', error);
+      setTimeout(() => {
+        setMsg(null);
+      }, 3000);
     }
   };
-
+  
   const handleDelete = async (userId) => {
     try {
       await axios.delete(`https://reqres.in/api/users/${userId}`);
       setUsers(users.filter((user) => user.id !== userId));
+      setMsg('Success! user deleted');
+      setTimeout(() => {
+        setMsg(null);
+      }, 3000);
     } catch (error) {
-      alert("Error deleting user", error);
+      setMsg('Error!', error);
+      setTimeout(() => {
+        setMsg(null);
+      }, 3000);
     }
   };
 
@@ -216,6 +230,9 @@ const UsersPage = () => {
           </div>
         </div>
       )}
+
+      <p className={`${msg ? 'opacity-100 top-7 duration-1000':''} absolute opacity-0 z-100 top-1 left-1/2 -translate-x-1/2 bg-gray-100 rounded-lg w-fit px-10 py-4 h-5 flex items-center text-orange-500 font-medium transition-all `}>{msg}</p>
+      
     </div>
   );
 };
