@@ -31,7 +31,7 @@ const LoginPage = () => {
           <input
             type="email"
             placeholder="Email"
-            className="w-full p-3 mb-4 border border-gray-300 rounded bg-orange-400 text-gray-100 font-semibold outline-orange-600"
+            className="w-full p-3 mb-4 border border-gray-300 rounded bg-orange-400 text-gray-100 font-semibold outline-orange-600 placeholder:italic"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -39,7 +39,7 @@ const LoginPage = () => {
           <input
             type="password"
             placeholder="Password"
-            className="w-full p-3 mb-4 border border-gray-300 rounded bg-orange-400 text-gray-100 font-semibold outline-orange-600"
+            className="w-full p-3 mb-4 border border-gray-300 rounded bg-orange-400 text-gray-100 font-semibold outline-orange-600 placeholder:italic"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required

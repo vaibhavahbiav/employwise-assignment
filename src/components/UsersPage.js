@@ -103,7 +103,7 @@ const UsersPage = () => {
       <div className="mb-5 w-[200px] justify-self-end mr-10 lg:mb-10 lg:mr-32">
         <input
           type="text"
-          className="px-3 py-1 rounded-lg outline-orange-600"
+          className="px-3 py-1 rounded-lg outline-orange-600 placeholder:italic"
           placeholder="search user"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
@@ -111,7 +111,7 @@ const UsersPage = () => {
       </div>
 
       {loading ? (
-        <p className="text-gray-100">Fetching data...</p>
+        <p className="text-gray-100 text-center">Fetching data...</p>
       ) : (
         <div>
           {filteredUsers.length === 0 ? (
