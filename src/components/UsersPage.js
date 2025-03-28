@@ -8,7 +8,8 @@ const UsersPage = () => {
   const [totalUsers, setTotalUsers] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingUser, setEditingUser] = useState(null);
-  const [msg ,setMsg] = useState(null);
+  const [msg, setMsg] = useState(null);
+  const [searchQuery, setSearchQuery] = useState(""); // New state for search query
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -53,35 +54,34 @@ const UsersPage = () => {
         )
       );
       closeModal();
-      setMsg('Success! user updated.');
+      setMsg("Success! user updated.");
       setTimeout(() => {
         setMsg(null);
       }, 3000);
     } catch (error) {
-      setMsg('Error!', error);
-      setTimeout(() => {
-        setMsg(null);
-      }, 3000);
-    }
-  };
-  
-  const handleDelete = async (userId) => {
-    try {
-      await axios.delete(`https://reqres.in/api/users/${userId}`);
-      setUsers(users.filter((user) => user.id !== userId));
-      setMsg('Success! user deleted');
-      setTimeout(() => {
-        setMsg(null);
-      }, 3000);
-    } catch (error) {
-      setMsg('Error!', error);
+      setMsg("Error!", error);
       setTimeout(() => {
         setMsg(null);
       }, 3000);
     }
   };
 
-  // GOTO NEXT PAGE
+  const handleDelete = async (userId) => {
+    try {
+      await axios.delete(`https://reqres.in/api/users/${userId}`);
+      setUsers(users.filter((user) => user.id !== userId));
+      setMsg("Success! user deleted");
+      setTimeout(() => {
+        setMsg(null);
+      }, 3000);
+    } catch (error) {
+      setMsg("Error!", error);
+      setTimeout(() => {
+        setMsg(null);
+      }, 3000);
+    }
+  };
+
   const handleNextPage = () => {
     if (users.length > 0 && totalUsers > currentPage * 6) {
       setCurrentPage(currentPage + 1);
@@ -90,20 +90,36 @@ const UsersPage = () => {
 
   const handlePrevPage = () => setCurrentPage(currentPage - 1);
 
+  // SEARCH BAR RELATED
+  const filteredUsers = users.filter((user) => {
+    const fullName = `${user.first_name} ${user.last_name}`.toLowerCase();
+    return fullName.includes(searchQuery.toLowerCase());
+  });
+
   return (
-    <div className="bg-orange-400 p-6 rounded-lg">
+    <div className="bg-orange-400 p-6 rounded-lg relative">
       <h2 className="text-2xl font-bold mb-4 text-gray-100">Users database</h2>
+
+      <div className="mb-5 w-[200px] justify-self-end mr-10 lg:mb-10 lg:mr-32">
+        <input
+          type="text"
+          className="px-3 py-1 rounded-lg outline-orange-600"
+          placeholder="search user"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+      </div>
 
       {loading ? (
         <p className="text-gray-100">Fetching data...</p>
       ) : (
         <div>
-          {users.length === 0 ? (
-            <p>No users to show</p>
+          {filteredUsers.length === 0 ? (
+            <p className="text-gray-100 text-center font-semibold text-lg">... user not found</p>
           ) : (
             <div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-5 gap-y-10 place-items-center">
-                {users.map((user, i) => (
+                {filteredUsers.map((user, i) => (
                   <div key={i} className="bg-gray-100 p-6 rounded-lg w-fit shadow-lg shadow-orange-600">
                     <img
                       src={user.avatar}
@@ -142,7 +158,7 @@ const UsersPage = () => {
                 </button>
                 <button
                   onClick={handleNextPage}
-                  disabled={users.length === 0 || currentPage * 6 >= totalUsers}
+                  disabled={filteredUsers.length === 0 || currentPage * 6 >= totalUsers}
                   className="bg-gray-200 text-orange-600 font-bold px-4 py-2 rounded-lg  disabled:cursor-not-allowed disabled:bg-gray-400"
                 >
                   Next
@@ -231,8 +247,7 @@ const UsersPage = () => {
         </div>
       )}
 
-      <p className={`${msg ? 'opacity-100 top-6 sm:top-7 duration-1000':''} absolute opacity-0 z-100 top-1 left-1/2 -translate-x-1/2 bg-gray-100 rounded-lg w-fit px-2 sm:px-10 py-4 h-5 flex items-center text-orange-500 font-medium transition-all `}>{msg}</p>
-      
+      <p className={`${msg ? 'opacity-100 top-6 sm:top-7 duration-1000' : ''} absolute opacity-0 z-100 top-1 left-1/2 -translate-x-1/2 bg-gray-100 rounded-lg w-fit px-2 sm:px-10 py-4 h-5 flex items-center text-orange-500 font-medium transition-all `}>{msg}</p>
     </div>
   );
 };
