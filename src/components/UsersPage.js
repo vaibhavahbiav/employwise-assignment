@@ -231,7 +231,7 @@ const UsersPage = () => {
         </div>
       )}
 
-      <p className={`${msg ? 'opacity-100 top-7 duration-1000':''} absolute opacity-0 z-100 top-1 left-1/2 -translate-x-1/2 bg-gray-100 rounded-lg w-fit px-10 py-4 h-5 flex items-center text-orange-500 font-medium transition-all `}>{msg}</p>
+      <p className={`${msg ? 'opacity-100 top-6 sm:top-7 duration-1000':''} absolute opacity-0 z-100 top-1 left-1/2 -translate-x-1/2 bg-gray-100 rounded-lg w-fit px-2 sm:px-10 py-4 h-5 flex items-center text-orange-500 font-medium transition-all `}>{msg}</p>
       
     </div>
   );
