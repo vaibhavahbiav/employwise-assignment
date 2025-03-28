@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/employwise-assignment/static/css/main.d6266d2c.css",
-    "main.js": "/employwise-assignment/static/js/main.0ba25956.js",
+    "main.css": "/employwise-assignment/static/css/main.09810b86.css",
+    "main.js": "/employwise-assignment/static/js/main.f73ec018.js",
     "static/js/453.9baaef0a.chunk.js": "/employwise-assignment/static/js/453.9baaef0a.chunk.js",
     "index.html": "/employwise-assignment/index.html",
-    "main.d6266d2c.css.map": "/employwise-assignment/static/css/main.d6266d2c.css.map",
-    "main.0ba25956.js.map": "/employwise-assignment/static/js/main.0ba25956.js.map",
+    "main.09810b86.css.map": "/employwise-assignment/static/css/main.09810b86.css.map",
+    "main.f73ec018.js.map": "/employwise-assignment/static/js/main.f73ec018.js.map",
     "453.9baaef0a.chunk.js.map": "/employwise-assignment/static/js/453.9baaef0a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.d6266d2c.css",
-    "static/js/main.0ba25956.js"
+    "static/css/main.09810b86.css",
+    "static/js/main.f73ec018.js"
   ]
 }
