@@ -25,7 +25,7 @@ const LoginPage = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-orange-400">
-      <div className="bg-gray-100 p-8 rounded-lg w-11/12 sm:w-96 shadow-lg shadow-orange-600">
+      <div className="bg-gray-100 p-8 rounded-lg w-2/3 sm:w-96 shadow-lg shadow-orange-600">
         <h2 className="text-2xl text-center mb-6 font-semibold text-orange-500"><span className="tracking-wider font-bold underline underline-offset-8">EmployWise</span> Login</h2>
         <form onSubmit={handleLogin}>
           <input
